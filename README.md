@@ -2,11 +2,17 @@
 
 This backend exposes secure wallet and DLC-related functionality over HTTP using a Rust + Axum server. It wraps internal cryptographic logic from `dlcplazacryptlib`.
 
+## 📡 Base URL
+
+**Production**: `https://api.cadenabitcoin.dev`
+
+All requests should be made to this base URL.
+
 ## ✅ Currently Exposed Endpoint
 
 ---
 
-### `POST /derive_xpub`
+### `POST https://api.cadenabitcoin.dev/derive_xpub`
 
 Derives a master extended public key (XPUB) from a BIP-39 mnemonic phrase.
 
