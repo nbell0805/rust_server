@@ -12,34 +12,61 @@ All requests should be made to this base URL.
 
 ---
 
-### `POST https://api.cadenabitcoin.dev/derive_xpub`
+## 🔐 Endpoints
 
-Derives a master extended public key (XPUB) from a BIP-39 mnemonic phrase.
+### `POST /init_with_entropy`
+Initialize the system with a raw entropy hex string.
 
-#### Request
-
+**Request Body:**
 ```json
 {
-  "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about",
+  "entropy": "000102030405060708090a0b0c0d0e0f",
   "network": "bitcoin"
 }
 ```
 
-- `mnemonic`: A valid BIP-39 12 or 24 word phrase.
-- `network`: One of `"bitcoin"` or `"signet"`.
-
-#### Response
-
+**Response:**
 ```json
 {
-  "xpub": "xpub6CatWdiZiodmUeTDp8LT5or8nmbKNcuyvz7WyksVFkKB4RHwCD3XyuvPEbvqAQY3rAPshWcMLoP2fMFMKHPJ4ZeZXYVUhLv1VMrjPC7PW6V"
+  "xpub": "xpub..."
 }
 ```
 
-#### Errors
+---
 
-- `400 Bad Request`: If the mnemonic or network is invalid
-- `500 Internal Server Error`: If derivation fails
+### `GET /get_xpub`
+Returns the currently initialized XPUB.
+
+**Response:**
+```json
+{
+  "xpub": "xpub..."
+}
+```
+
+---
+
+### `GET /get_public_key/:index`
+Returns the public key at the given child index.
+
+**Response:**
+```json
+{
+  "value": "<public_key_hex>"
+}
+```
+
+---
+
+### `GET /get_address/:index`
+Returns the Bitcoin address at the given child index.
+
+**Response:**
+```json
+{
+  "value": "<bitcoin_address>"
+}
+```
 
 ---
 
